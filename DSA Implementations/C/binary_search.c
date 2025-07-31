@@ -24,10 +24,12 @@ int binary_search(int arr[], int n, int k)
 
 int main()
 {
-    int n, k, arr[100];
+    int n, k;
 
     printf("Enter the number of elements in the array : ");
     scanf("%d", &n);
+
+    int arr[n];
 
     printf("Enter the elements of the array (Make sure it is sorted in ascending order) : \n");
 
