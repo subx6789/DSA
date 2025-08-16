@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+using namespace std;
 
-void selection_sort(std::vector<int> &arr)
+void selection_sort(vector<int> &arr)
 {
     int n = arr.size();
     for (int i = 0; i < n - 1; ++i)
@@ -17,7 +18,7 @@ void selection_sort(std::vector<int> &arr)
         }
         if (min_index != i)
         {
-            std::swap(arr[i], arr[min_index]);
+            swap(arr[i], arr[min_index]);
         }
     }
 }
@@ -26,25 +27,25 @@ int main()
 {
     int n;
 
-    std::cout << "Enter the number of elements in the array: ";
-    std::cin >> n;
+    cout << "Enter the number of elements in the array: ";
+    cin >> n;
 
-    std::vector<int> arr(n);
+    vector<int> arr(n);
 
-    std::cout << "Enter the elements of the array: " << std::endl;
+    cout << "Enter the elements of the array: " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cin >> arr[i];
+        cin >> arr[i];
     }
 
     selection_sort(arr);
 
-    std::cout << "Sorted array: " << std::endl;
+    cout << "Sorted array: " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cout << arr[i] << " ";
+        cout << arr[i] << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
 
     return 0;
 }

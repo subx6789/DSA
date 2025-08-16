@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+using namespace std;
 
-int partition(std::vector<int> &arr, int low, int high)
+int partition(vector<int> &arr, int low, int high)
 {
     int pivot = arr[low];
     int i = low;
@@ -20,14 +21,14 @@ int partition(std::vector<int> &arr, int low, int high)
         }
         if (i < j)
         {
-            std::swap(arr[i], arr[j]);
+            swap(arr[i], arr[j]);
         }
     }
-    std::swap(arr[low], arr[j]);
+    swap(arr[low], arr[j]);
     return j;
 }
 
-void quick_sort(std::vector<int> &arr, int low, int high)
+void quick_sort(vector<int> &arr, int low, int high)
 {
     if (low < high)
     {
@@ -40,24 +41,24 @@ void quick_sort(std::vector<int> &arr, int low, int high)
 int main()
 {
     int n;
-    std::cout << "Enter the number of elements in the array: ";
-    std::cin >> n;
+    cout << "Enter the number of elements in the array: ";
+    cin >> n;
 
-    std::vector<int> arr(n);
-    std::cout << "Enter the elements of the array: " << std::endl;
+    vector<int> arr(n);
+    cout << "Enter the elements of the array: " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cin >> arr[i];
+        cin >> arr[i];
     }
 
     quick_sort(arr, 0, n - 1);
 
-    std::cout << "Sorted array: " << std::endl;
+    cout << "Sorted array: " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cout << arr[i] << " ";
+        cout << arr[i] << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
 
     return 0;
 }

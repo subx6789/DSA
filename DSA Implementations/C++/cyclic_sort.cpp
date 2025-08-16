@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+using namespace std;
 
-void cyclic_sort(std::vector<int> &arr)
+void cyclic_sort(vector<int> &arr)
 {
     int i = 0;
     while (i < arr.size())
@@ -10,7 +11,7 @@ void cyclic_sort(std::vector<int> &arr)
         int correct_index = arr[i] - 1;
         if (arr[i] > 0 && arr[i] <= arr.size() && arr[i] != arr[correct_index])
         {
-            std::swap(arr[i], arr[correct_index]);
+            swap(arr[i], arr[correct_index]);
         }
         else
         {
@@ -22,24 +23,24 @@ void cyclic_sort(std::vector<int> &arr)
 int main()
 {
     int n;
-    std::cout << "Enter the number of elements in the array: ";
-    std::cin >> n;
+    cout << "Enter the number of elements in the array: ";
+    cin >> n;
 
-    std::vector<int> arr(n);
-    std::cout << "Enter the elements of the array (numbers from 1 to " << n << "): " << std::endl;
+    vector<int> arr(n);
+    cout << "Enter the elements of the array (numbers from 1 to " << n << "): " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cin >> arr[i];
+        cin >> arr[i];
     }
 
     cyclic_sort(arr);
 
-    std::cout << "Sorted array: " << std::endl;
+    cout << "Sorted array: " << endl;
     for (int num : arr)
     {
-        std::cout << num << " ";
+        cout << num << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
 
     return 0;
 }

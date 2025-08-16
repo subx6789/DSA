@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+using namespace std;
 
-void sort_matrix(std::vector<std::vector<int>> &arr)
+void sort_matrix(vector<vector<int>> &arr)
 {
     if (arr.empty() || arr[0].empty())
     {
@@ -12,7 +13,7 @@ void sort_matrix(std::vector<std::vector<int>> &arr)
     int rows = arr.size();
     int cols = arr[0].size();
 
-    std::vector<int> temp_vec;
+    vector<int> temp_vec;
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; ++j)
@@ -21,7 +22,7 @@ void sort_matrix(std::vector<std::vector<int>> &arr)
         }
     }
 
-    std::sort(temp_vec.begin(), temp_vec.end());
+    sort(temp_vec.begin(), temp_vec.end());
 
     int k = 0;
     for (int i = 0; i < rows; ++i)
@@ -37,33 +38,33 @@ int main()
 {
     int rows, cols;
 
-    std::cout << "Enter the number of rows in the matrix: ";
-    std::cin >> rows;
+    cout << "Enter the number of rows in the matrix: ";
+    cin >> rows;
 
-    std::cout << "Enter the number of columns in the matrix: ";
-    std::cin >> cols;
+    cout << "Enter the number of columns in the matrix: ";
+    cin >> cols;
 
-    std::vector<std::vector<int>> arr(rows, std::vector<int>(cols));
+    vector<vector<int>> arr(rows, vector<int>(cols));
 
-    std::cout << "Enter the elements of the matrix: " << std::endl;
+    cout << "Enter the elements of the matrix: " << endl;
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; ++j)
         {
-            std::cin >> arr[i][j];
+            cin >> arr[i][j];
         }
     }
 
     sort_matrix(arr);
 
-    std::cout << "Sorted matrix: " << std::endl;
+    cout << "Sorted matrix: " << endl;
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; ++j)
         {
-            std::cout << arr[i][j] << " ";
+            cout << arr[i][j] << " ";
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 
     return 0;

@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+using namespace std;
 
-void insertion_sort(std::vector<int> &arr)
+void insertion_sort(vector<int> &arr)
 {
     int n = arr.size();
     for (int i = 1; i < n; ++i)
@@ -22,24 +23,24 @@ void insertion_sort(std::vector<int> &arr)
 int main()
 {
     int n;
-    std::cout << "Enter the number of elements in the array: ";
-    std::cin >> n;
+    cout << "Enter the number of elements in the array: ";
+    cin >> n;
 
-    std::vector<int> arr(n);
-    std::cout << "Enter the elements of the array: " << std::endl;
+    vector<int> arr(n);
+    cout << "Enter the elements of the array: " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cin >> arr[i];
+        cin >> arr[i];
     }
 
     insertion_sort(arr);
 
-    std::cout << "Sorted array: " << std::endl;
+    cout << "Sorted array: " << endl;
     for (int num : arr)
     {
-        std::cout << num << " ";
+        cout << num << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
 
     return 0;
 }

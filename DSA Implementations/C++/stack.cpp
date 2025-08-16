@@ -1,9 +1,10 @@
 #include <iostream>
 #include <stack>
+using namespace std;
 
 int main()
 {
-    std::stack<int> myStack;
+    stack<int> myStack;
 
     for (int i = 1; i <= 5; ++i)
     {
@@ -12,7 +13,7 @@ int main()
 
     while (!myStack.empty())
     {
-        std::cout << myStack.top() << std::endl;
+        cout << myStack.top() << endl;
         myStack.pop();
     }
 

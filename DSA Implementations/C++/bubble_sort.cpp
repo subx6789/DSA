@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+using namespace std;
 
-void bubble_sort(std::vector<int> &arr)
+void bubble_sort(vector<int> &arr)
 {
     int n = arr.size();
     bool swapped;
@@ -13,7 +14,7 @@ void bubble_sort(std::vector<int> &arr)
         {
             if (arr[j] > arr[j + 1])
             {
-                std::swap(arr[j], arr[j + 1]);
+                swap(arr[j], arr[j + 1]);
                 swapped = true;
             }
         }
@@ -28,25 +29,25 @@ int main()
 {
     int n;
 
-    std::cout << "Enter the number of elements in the array: ";
-    std::cin >> n;
+    cout << "Enter the number of elements in the array: ";
+    cin >> n;
 
-    std::vector<int> arr(n);
+    vector<int> arr(n);
 
-    std::cout << "Enter the elements of the array: " << std::endl;
+    cout << "Enter the elements of the array: " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cin >> arr[i];
+        cin >> arr[i];
     }
 
     bubble_sort(arr);
 
-    std::cout << "Sorted array: " << std::endl;
+    cout << "Sorted array: " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cout << arr[i] << " ";
+        cout << arr[i] << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
 
     return 0;
 }

@@ -1,9 +1,10 @@
 #include <iostream>
 #include <queue>
+using namespace std;
 
 int main()
 {
-    std::queue<int> myQueue;
+    queue<int> myQueue;
 
     for (int i = 1; i <= 5; ++i)
     {
@@ -12,7 +13,7 @@ int main()
 
     while (!myQueue.empty())
     {
-        std::cout << myQueue.front() << std::endl;
+        cout << myQueue.front() << endl;
         myQueue.pop();
     }
 

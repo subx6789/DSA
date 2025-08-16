@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
+using namespace std;
 
-void merge(std::vector<int> &arr, int low, int mid, int high)
+void merge(vector<int> &arr, int low, int mid, int high)
 {
     int left = low, right = mid + 1;
-    std::vector<int> temp;
+    vector<int> temp;
     temp.reserve(high - low + 1);
 
     while (left <= mid && right <= high)
@@ -35,7 +36,7 @@ void merge(std::vector<int> &arr, int low, int mid, int high)
     }
 }
 
-void merge_sort(std::vector<int> &arr, int low, int high)
+void merge_sort(vector<int> &arr, int low, int high)
 {
     if (low >= high)
     {
@@ -52,24 +53,24 @@ void merge_sort(std::vector<int> &arr, int low, int high)
 int main()
 {
     int n;
-    std::cout << "Enter the number of elements in the array: ";
-    std::cin >> n;
+    cout << "Enter the number of elements in the array: ";
+    cin >> n;
 
-    std::vector<int> arr(n);
-    std::cout << "Enter the elements of the array: " << std::endl;
+    vector<int> arr(n);
+    cout << "Enter the elements of the array: " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cin >> arr[i];
+        cin >> arr[i];
     }
 
     merge_sort(arr, 0, n - 1);
 
-    std::cout << "Sorted array: " << std::endl;
+    cout << "Sorted array: " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cout << arr[i] << " ";
+        cout << arr[i] << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
 
     return 0;
 }

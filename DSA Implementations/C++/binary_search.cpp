@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
+using namespace std;
 
-int binary_search(const std::vector<int> &arr, int k)
+int binary_search(const vector<int> &arr, int k)
 {
     int left = 0;
     int right = arr.size() - 1;
@@ -30,30 +31,30 @@ int main()
 {
     int n, k;
 
-    std::cout << "Enter the number of elements in the array: ";
-    std::cin >> n;
+    cout << "Enter the number of elements in the array: ";
+    cin >> n;
 
-    std::vector<int> arr(n);
+    vector<int> arr(n);
 
-    std::cout << "Enter the elements of the array (Make sure it is sorted in ascending order): " << std::endl;
+    cout << "Enter the elements of the array (Make sure it is sorted in ascending order): " << endl;
     for (int i = 0; i < n; ++i)
     {
-        std::cin >> arr[i];
+        cin >> arr[i];
     }
 
-    std::cout << "Enter the element to be searched: ";
-    std::cin >> k;
+    cout << "Enter the element to be searched: ";
+    cin >> k;
 
     int binary_search_result = binary_search(arr, k);
 
     if (binary_search_result != -1)
     {
-        std::cout << "Element found at index " << binary_search_result << std::endl;
+        cout << "Element found at index " << binary_search_result << endl;
         return 0;
     }
     else
     {
-        std::cout << "Element not found in the array" << std::endl;
+        cout << "Element not found in the array" << endl;
         return 1;
     }
 }
