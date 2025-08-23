@@ -7,6 +7,7 @@
 typedef struct Node
 {
     int vertex;        // vertex value
+    int weight;        // weight of the edge
     struct Node *next; // pointer to the next node (stores next node address)
 } Node;
 
@@ -14,6 +15,7 @@ typedef struct Node
 typedef struct Graph
 {
     int numVertices;              // number of vertices
+    int weighted;                 // flag to check if graph is weighted
     Node *adjLists[MAX_VERTICES]; // adjacency list of each vertex
 } Graph;
 
@@ -25,10 +27,11 @@ typedef struct Queue
 } Queue;
 
 // function to create a graph with given vertices and it returns a graph structure
-Graph *createGraph(int vertices)
+Graph *createGraph(int vertices, int weighted)
 {
     Graph *graph = malloc(sizeof(Graph)); // dynamically allocate memory for the graph
     graph->numVertices = vertices;        // set the number of vertices in the graph given by the user
+    graph->weighted = weighted;           // set weighted flag
 
     for (int i = 0; i < vertices; i++) // initialize adjacency lists to NULL
     {
@@ -39,21 +42,22 @@ Graph *createGraph(int vertices)
 }
 
 // helper function to add a single directed edge from src -> dest
-void addSingleEdge(Graph *graph, int src, int dest)
+void addSingleEdge(Graph *graph, int src, int dest, int weight)
 {
-    Node *newNode = (Node *)malloc(sizeof(Node)); // dynamically allocate the size of a new node
-    newNode->vertex = dest;                       // store destination vertex
-    newNode->next = graph->adjLists[src];         // link it to existing list
-    graph->adjLists[src] = newNode;               // update adjacency list head
+    Node *newNode = (Node *)malloc(sizeof(Node));   // dynamically allocate the size of a new node
+    newNode->vertex = dest;                         // store destination vertex
+    newNode->weight = graph->weighted ? weight : 1; // if weighted use given weight else use 1
+    newNode->next = graph->adjLists[src];           // link it to existing list
+    graph->adjLists[src] = newNode;                 // update adjacency list head
 }
 
 // function to add an edge which handles directed/undirected
-void addEdge(Graph *graph, int src, int dest, int directed)
+void addEdge(Graph *graph, int src, int dest, int directed, int weight)
 {
-    addSingleEdge(graph, src, dest); // always add src -> dest
-    if (!directed)                   // if undirected, also add dest -> src
+    addSingleEdge(graph, src, dest, weight); // always add src -> dest
+    if (!directed)                           // if undirected, also add dest -> src
     {
-        addSingleEdge(graph, dest, src); // add dest -> src
+        addSingleEdge(graph, dest, src, weight); // add dest -> src
     }
 }
 
@@ -64,11 +68,18 @@ void printGraph(Graph *graph)
     for (int v = 0; v < graph->numVertices; v++) // run a for loop for all vertices
     {
         Node *temp = graph->adjLists[v]; // get the head of the adjacency list
-        printf("%d -> ", v);             // print the vertex
+        printf("%d : ", v);              // print the vertex
         while (temp)                     // traverse the adjacency list
         {
-            printf("%d ", temp->vertex); // print the vertex
-            temp = temp->next;           // move to the next node
+            if (graph->weighted)
+            {
+                printf("%d(%d) ", temp->vertex, temp->weight); // print the vertex with weight
+            }
+            else
+            {
+                printf("%d ", temp->vertex); // print the vertex
+            }
+            temp = temp->next; // move to the next node
         }
         printf("\n");
     }
@@ -189,7 +200,7 @@ void BFS(Graph *graph, int startVertex)
 // main function
 int main()
 {
-    int vertices, edges, directed; // initialize the variables for number of vertices, edges and directed/undirected graph
+    int vertices, edges, directed, weighted; // initialize the variables for number of vertices, edges, directed/undirected graph and weighted/unweighted graph
     printf("Enter the number of vertices (Maximum 100): ");
     scanf("%d", &vertices);
 
@@ -199,14 +210,37 @@ int main()
     printf("Is the graph directed? (0 = No, 1 = Yes): ");
     scanf("%d", &directed);
 
-    Graph *graph = createGraph(vertices); // create a graph with the given number of vertices
+    printf("Is the graph weighted? (0 = No, 1 = Yes): ");
+    scanf("%d", &weighted);
 
-    printf("Enter the edges (source destination) one by one:\n");
+    Graph *graph = createGraph(vertices, weighted); // create a graph with the given number of vertices and weighted flag
+
+    printf("Enter the edges one by one:- \n");
+
+    if (weighted)
+    {
+        printf("Format: <source> <destination> <weight>\n");
+    }
+    else
+    {
+        printf("Format: <source> <destination>\n");
+    }
+
     for (int i = 0; i < edges; i++) // run a for loop for the number of edges
     {
-        int s, d; // initialize the variables for source and destination
-        scanf("%d %d", &s, &d);
-        addEdge(graph, s, d, directed); // add the edge to the graph
+        int s, d, w = 1; // initialize the variables for source and destination
+        if (weighted)
+        {
+            printf("Edge %d: ", i + 1);
+            scanf("%d %d %d", &s, &d, &w);
+        }
+        else
+        {
+            printf("Edge %d: ", i + 1);
+            scanf("%d %d", &s, &d);
+        }
+
+        addEdge(graph, s, d, directed, w); // add the edge to the graph
     }
 
     int startVertex; // initialize the variable for starting vertex
