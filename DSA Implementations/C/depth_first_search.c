@@ -228,7 +228,7 @@ int main()
     }
 
     int startVertex; // initialize the variable for starting vertex
-    printf("Enter the starting vertex for BFS: ");
+    printf("Enter the starting vertex for DFS: ");
     scanf("%d", &startVertex);
 
     printGraph(graph); // print the adjacency list
